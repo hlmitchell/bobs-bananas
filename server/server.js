@@ -5,7 +5,7 @@ const costController = require('./costController.js');
 const PORT = 3000;
 
 // connect to server
-app.listen(PORT || 3000, (err) => {
+const server = app.listen(PORT || 3000, (err) => {
   if (err) console.log('Could not connect');
   else console.log('Connected to 3000...');
 });
@@ -18,12 +18,15 @@ app.use(bodyParser.json());
 app.post('/findCost', 
   costController.checkDateFormatting, 
   costController.calculateCost, 
-  (req, res) => res.json({totalCost: res.locals.total}));
+  (req, res) => res.json({totalCost: res.locals.total})
+);
 
 app.use((err, req, res, next) => {
   res.status(400).send(err.message);
 })
 
 app.use('/*', (req, res) => {
-  res.send('Not a valid route');
+  res.status(404).send('Not a valid route');
 })
+
+module.exports = { server, app };

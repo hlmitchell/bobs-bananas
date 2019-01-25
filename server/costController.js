@@ -26,7 +26,7 @@ module.exports = {
     
     // convert date strings into integers
     let splitDate = startDate.split('/');
-    splitDate = splitDate.map((str, i) => parseInt(str));
+    splitDate = splitDate.map(str => parseInt(str));
   
     const month = splitDate[0];
     // months must be between 0 and 12
@@ -67,7 +67,7 @@ module.exports = {
         else if (day <= 28) total += 0.20;
         else total += 0.25;
       }
-      
+
       // increment day of week
       if (dayOfWeek < 6) dayOfWeek += 1;
       else dayOfWeek = 0;
