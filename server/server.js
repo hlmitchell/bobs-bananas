@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.post('/findCost', 
   costController.checkDateFormatting, 
   costController.calculateCost, 
-  (req, res) => res.send(res.locals.total));
+  (req, res) => res.json({totalCost: res.locals.total}));
 
 app.use((err, req, res, next) => {
   res.status(400).send(err.message);
